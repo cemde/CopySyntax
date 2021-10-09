@@ -1,8 +1,8 @@
 import sys
 import os
 
-sys.path.append(os.path.join(os.getcwd()))
-
+#TODO fix importing literal_copy to delete this
+sys.path.append(os.path.join(os.getcwd(), 'src'))
 import literal_copy as lc
 
 # int
@@ -69,26 +69,6 @@ def test_dict():
     for obj, s in zip(objects, strings):
         synt = lc.syntax(obj, seperator_space=True)
         assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
-
-
-
-# def _syntax_iterable(obj, quotes, line_length):
-#     if isinstance(obj, list):
-#         val = [syntax(element) for element in obj]
-#         val = "[" + ",".join(val) + "]"
-#     elif isinstance(obj, dict):
-#         val = [f"{syntax(key)}: {syntax(val)}" for key, val in obj.items()]
-#         val = "{" + ",".join(val) + "}"
-#     elif isinstance(obj, tuple):
-#         val = [syntax(element) for element in obj]
-#         val = "(" + ",".join(val) + ",)"
-#     elif isinstance(obj, set):
-#         val = [syntax(element) for element in obj]
-#         val = "{" + ",".join(val) + "}"
-#     else:
-#         val = None
-#     return val
-
 
 
 # run tests 
