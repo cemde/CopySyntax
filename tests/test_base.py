@@ -54,10 +54,22 @@ def test_complex():
 
 def test_list():
     objects = [[4,3,1], ["A", "aB", "9", "999~"], ["qÄ", 5, None, [False, 0.99], complex(-1,0)]]
-    strings = ['[4,3,1]', '["A", "aB", "9", "999~"]', '["qÄ", 5, None, [False, 0.99], complex(-1,0)]']
+    strings = ['[4,3,1]', '["A","aB","9","999~"]', '["qÄ",5,None,[False,0.99],complex(-1.0,0.0)]']
     for obj, s in zip(objects, strings):
         synt = lc.syntax(obj)
         assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
+
+def test_dict():
+    objects = [{4: 1, 3: "Bla", 1: None},
+               {"A": False, "aB": True, "9": None, "999~": complex(0,0)},
+               {0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1,0), "T": -1}}]
+    strings = ['{4: 1, 3: "Bla", 1: None}',
+               '{"A": False, "aB": True, "9": None, "999~": complex(0.0,0.0)}',
+               '{0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1.0,0.0), "T": -1}}']
+    for obj, s in zip(objects, strings):
+        synt = lc.syntax(obj, seperator_space=True)
+        assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
+
 
 
 # def _syntax_iterable(obj, quotes, line_length):
@@ -87,5 +99,6 @@ test_bool()
 test_nonetype()
 test_complex()
 test_list()
+test_dict()
 
 print('Done: All tests passed')
