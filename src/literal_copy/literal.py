@@ -1,3 +1,5 @@
+import pyperclip
+
 class Literal:
     def __init__(self, string: str, type: str) -> None:
         self.string = string
@@ -9,8 +11,9 @@ class Literal:
     def print(self) -> str:
         return self.__str__()
 
-    def clipboard(self):
-        pass
+    def clipboard(self) -> None:
+        pyperclip.copy(self.string)
 
     def save(self, file: str) -> None:
-        pass
+        with open(file, 'w') as file:
+            file.write(self.string)
