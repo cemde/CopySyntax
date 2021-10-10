@@ -4,12 +4,14 @@ import sys
 
 def _pkg_is_installed(package_name):
     spec = importlib.util.find_spec(package_name)
-    return  spec is not None
+    return spec is not None
 
-#https://stackoverflow.com/questions/1051254/check-if-python-package-is-installed
+
+# https://stackoverflow.com/questions/1051254/check-if-python-package-is-installed
 
 # For illustrative purposes.
-name = 'itertools'
+name = "itertools"
+
 
 def _import_package_if_exists():
     if name in sys.modules:
