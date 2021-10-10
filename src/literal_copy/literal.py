@@ -39,3 +39,4 @@ class Literal:
             raise OSError("File exists already and {overwrite=}. Select another filename or set `overwrite=True`.") 
         with open(path, 'w') as file:
             file.write(self.string)
+        #TODO add option to append

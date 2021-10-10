@@ -44,8 +44,13 @@ def test_save():
     # assert
     assert captured == SYNTAX
 
-def test_save():
-    file_path = 'tests/.test_literal_save.txt'
+# def test_save_file_exists():
+#     file_path = 'tests/.test_literal_save.txt'
     
-    #TODO
-    #create a file existing in this location and then cathc the OSError    
+#     with open(file_path, 'w') as f:
+#         f.write("test file content")
+    
+#     LITERAL.save(file_path, overwrite=False)
+
+#     #TODO
+#     #create a file existing in this location and then cathc the OSError    
