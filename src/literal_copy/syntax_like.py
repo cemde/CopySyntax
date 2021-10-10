@@ -1,16 +1,8 @@
 from typing import Any, Union, List, Optional
 
-from collections.abc import Iterable
-
+from .utils.iterable import _iterable
 from .literal import Literal
 from .types import base
-
-import six
-
-
-def iterable(arg: Any) -> bool:
-    return isinstance(arg, Iterable) and not isinstance(arg, six.string_types)
-
 
 
 def syntax_like(
@@ -20,7 +12,7 @@ def syntax_like(
     seperator_space: bool = False,
     raw: bool = False,
     ) -> Union[str, Literal]:
-    if iterable(obj):
+    if _iterable(obj):
         val = _syntax_like_iterable(
             obj, quotes=quotes, line_length=line_length, seperator_space=seperator_space
         )

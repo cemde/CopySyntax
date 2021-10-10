@@ -20,6 +20,9 @@ class Literal:
 
     def print(self) -> str:
         return self.__str__()
+    
+    def raw(self) -> str:
+        return self.string
 
     def clipboard(self) -> None:
         """This method will copy the syntax string to your clipboard.

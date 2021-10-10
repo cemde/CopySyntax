@@ -70,7 +70,23 @@ def test_dict():
         synt = lc.syntax(obj, seperator_space=True)
         assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
 
+def test_quotes():
+    objects = [["A", "B"], ["A", "B"]]
+    strings = ["['A', 'B']", "[\"A\", \"B\"]"]
+    quotes = ["single", "double"]
+    for obj, s, q in zip(objects, strings, quotes):
+        synt = lc.syntax(obj, seperator_space=True, quotes=q)
+        assert synt.print() == s, f"test_quotes failed: object: {obj} != {s}"
 
+def test_seperator():
+    objects = [["A", "B"], ["A", "B"]]
+    strings = ["[\"A\",\"B\"]", "[\"A\", \"B\"]"]
+    seperators = [False, True]
+    for obj, s, sep in zip(objects, strings, seperators):
+        synt = lc.syntax(obj, seperator_space=sep)
+        assert synt.print() == s, f"test_quotes failed: object: {obj} != {s}"
+
+        
 # run tests 
 test_int()
 test_float()
@@ -80,5 +96,7 @@ test_nonetype()
 test_complex()
 test_list()
 test_dict()
+test_quotes()
+test_seperator()
 
 print('Done: All tests passed')
