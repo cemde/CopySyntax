@@ -1,6 +1,7 @@
 import os
 import pyperclip
 
+
 class Literal:
     def __init__(self, string: str, type: str) -> None:
         """A Literal is a small object that contains the syntax string among others. It provides convenient ways to further
@@ -20,13 +21,12 @@ class Literal:
 
     def print(self) -> str:
         return self.__str__()
-    
+
     def raw(self) -> str:
         return self.string
 
     def clipboard(self) -> None:
-        """This method will copy the syntax string to your clipboard.
-        """
+        """This method will copy the syntax string to your clipboard."""
         pyperclip.copy(self.string)
 
     def save(self, path: str, overwrite: bool = False) -> None:
@@ -39,7 +39,9 @@ class Literal:
         :raises OSError: If `overwrite=False` but a file exists in this path, an OSError will be raised.
         """
         if not overwrite and os.path.isfile(path):
-            raise OSError("File exists already and {overwrite=}. Select another filename or set `overwrite=True`.") 
-        with open(path, 'w') as file:
+            raise OSError(
+                "File exists already and {overwrite=}. Select another filename or set `overwrite=True`."
+            )
+        with open(path, "w") as file:
             file.write(self.string)
-        #TODO add option to append
+        # TODO add option to append

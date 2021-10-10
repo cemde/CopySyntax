@@ -1,8 +1,7 @@
-from typing import Any, Union, List, Optional
+from typing import Any
 
 from .utils.iterable import _iterable
 from .literal import Literal
-from .types import base
 
 
 def syntax(
@@ -10,7 +9,7 @@ def syntax(
     quotes: str = "double",
     line_length: int = -1,
     seperator_space: bool = False,
-    ) -> Literal:
+) -> Literal:
     """Creates the string containing the syntax to recreate the same object. For example, with `a=["A",5]`
     using `syntax(a)` will generate '["A",5]' as a string to reproduce this variable in a different runtime.
 
@@ -27,18 +26,18 @@ def syntax(
     :rtype: Union[str, Literal]
     """
     # set correct quotes
-    if quotes not in ["single", "double", "'", "\""]:
+    if quotes not in ["single", "double", "'", '"']:
         raise ValueError(f"Valid values are `single` and `double`. Not {quotes}")
     if quotes == "single":
         quotes = "'"
     elif quotes == "double":
-        quotes = "\""
-    
+        quotes = '"'
+
     if _iterable(obj):
         val = _syntax_iterable(obj, quotes, line_length, seperator_space)
     else:
         val = _syntax_atomic(obj, quotes, line_length)
-    
+
     return Literal(val, str(type(obj)))
 
 
@@ -46,7 +45,7 @@ def _syntax_atomic(obj, quotes: str, line_length: int) -> str:
     if isinstance(obj, int):
         val = str(obj)
     elif isinstance(obj, str):
-        val = f'{quotes}' + obj + f'{quotes}'
+        val = f"{quotes}" + obj + f"{quotes}"
     elif isinstance(obj, bool):
         val = "True" if obj else "False"
     elif isinstance(obj, float):
