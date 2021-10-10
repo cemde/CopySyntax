@@ -43,4 +43,9 @@ def test_save():
     
     # assert
     assert captured == SYNTAX
+
+def test_save():
+    file_path = 'tests/.test_literal_save.txt'
     
+    #TODO
+    #create a file existing in this location and then cathc the OSError    

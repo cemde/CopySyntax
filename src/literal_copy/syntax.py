@@ -19,6 +19,24 @@ def syntax(
     seperator_space: bool = False,
     raw: bool = False,
     ) -> Union[str, Literal]:
+    """Creates the string containing the syntax to recreate the same object. For example, with `a=["A",5]`
+    using `syntax(a)` will generate '["A",5]' as a string to reproduce this variable in a different runtime.
+
+    :param obj: The object for which the syntax should be generated. For types of objects supported see #TODO.
+    :type obj: Any
+    :param quotes: Sets quotes to signle or double quotes. Allowed values `'` or `"`, defaults to "single"
+    :type quotes: str, optional
+    :param line_length: Breaks up the syntax into multiple lines. Fo example, the syntax for a long list will be shown in multiple lines if it is longer
+    than `line_length`, defaults to -1
+    :type line_length: int, optional
+    :param seperator_space: Decides wether a string will be placed between members of an interable. For example: `[4,5]` or `[4, 5]`, defaults to False
+    :type seperator_space: bool, optional
+    :param raw: If set to `False`, the function will return the raw string to generate the syntax. If `True` a `Literal` object will be
+    returned that provides a simple syntax for copying or saving the syntax string, defaults to False
+    :type raw: bool, optional
+    :return: Returns a syntax string, either as `str` or `Literal` object, depending on the `raw` argument.
+    :rtype: Union[str, Literal]
+    """
     if iterable(obj):
         val = _syntax_iterable(
             obj, quotes=quotes, line_length=line_length, seperator_space=seperator_space
