@@ -72,9 +72,9 @@ def test_list():
         ["qÄ", 5, None, [False, 0.99], complex(-1, 0)],
     ]
     strings = [
-        "[4,3,1]",
-        '["A","aB","9","999~"]',
-        '["qÄ",5,None,[False,0.99],complex(-1.0,0.0)]',
+        "[4, 3, 1]",
+        '["A", "aB", "9", "999~"]',
+        '["qÄ", 5, None, [False, 0.99], complex(-1.0,0.0)]',
     ]
     for obj, s in zip(objects, strings):
         synt = lc.syntax(obj)
@@ -107,9 +107,9 @@ def test_quotes():
 
 
 def test_seperator():
-    objects = [["A", "B"], ["A", "B"]]
-    strings = ['["A","B"]', '["A", "B"]']
-    seperators = [False, True]
+    objects = [["A", "B"], ["A", "B"], {5:1, 2:["A","B"]}, {5:1, 2:["A","B"]}]
+    strings = ['["A","B"]', '["A", "B"]', '{5:1,2:["A","B"]}', '{5: 1, 2: ["A", "B"]}']
+    seperators = [False, True, False, True]
     for obj, s, sep in zip(objects, strings, seperators):
         synt = lc.syntax(obj, seperator_space=sep)
         assert synt.print() == s, f"test_quotes failed: object: {obj} != {s}"

@@ -8,7 +8,7 @@ def syntax(
     obj: Any,
     quotes: str = "double",
     line_length: int = -1,
-    seperator_space: bool = False,
+    seperator_space: bool = True,
 ) -> Literal:
     """Creates the string containing the syntax to recreate the same object. For example, with `a=["A",5]`
     using `syntax(a)` will generate '["A",5]' as a string to reproduce this variable in a different runtime.
@@ -20,7 +20,7 @@ def syntax(
     :param line_length: Breaks up the syntax into multiple lines. Fo example, the syntax for a long list will be shown in multiple lines if it is longer
     than `line_length`, defaults to -1
     :type line_length: int, optional
-    :param seperator_space: Decides wether a string will be placed between members of an interable. For example: `[4,5]` or `[4, 5]`, defaults to False
+    :param seperator_space: Decides wether a string will be placed between members of an interable. For example: `[4,5]` or `[4, 5]`, defaults to True
     :type seperator_space: bool, optional
     :return: Returns a syntax string, either as `str` or `Literal` object, depending on the `raw` argument.
     :rtype: Union[str, Literal]
@@ -65,8 +65,9 @@ def _syntax_iterable(obj, quotes: str, line_length: int, seperator_space: bool) 
         elements = [syntax(val, quotes).raw() for val in obj]
         string = "[" + seperator.join(elements) + "]"
     elif isinstance(obj, dict):
+        after_colon = " " if seperator_space else ""
         elements = [
-            f"{syntax(key, quotes).raw()}: {syntax(val, quotes, seperator_space=seperator_space).raw()}"
+            f"{syntax(key, quotes).raw()}:{after_colon}{syntax(val, quotes, seperator_space=seperator_space).raw()}"
             for key, val in obj.items()
         ]
         string = "{" + seperator.join(elements) + "}"
