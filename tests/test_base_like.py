@@ -75,20 +75,21 @@ def test_list():
         assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
 
 
-def test_dict():
-    objects = [
-        {4: 1, 3: "Bla", 1: None},
-        {"A": False, "aB": True, "9": None, "999~": complex(0, 0)},
-        {0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1, 0), "T": -1}},
-    ]
-    strings = [
-        '{2: 2, 3: "Bla", 1: None}',
-        '{"A": False, "aB": True, "9": None, "999~": complex(0.0,0.0)}',
-        '{0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1.0,0.0), "T": -1}}',
-    ]
-    for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj, seperator_space=True)
-        assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
+# # dictionary
+# def test_dict():
+#     objects = [
+#         {4: 1, 3: "Bla", 1: None},
+#         {"A": False, "aB": True, "9": None, "999~": complex(0, 0)},
+#         {0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1, 0), "T": -1}},
+#     ]
+#     strings = [
+#         '{2: 2, 3: "Bla", 1: None}',
+#         '{"A": False, "aB": True, "9": None, "999~": complex(0.0,0.0)}',
+#         '{0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1.0,0.0), "T": -1}}',
+#     ]
+#     for obj, s in zip(objects, strings):
+#         synt = lc.syntax(obj, seperator_space=True)
+#         assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
 
 # tuple
 def test_tuple():
@@ -97,27 +98,27 @@ def test_tuple():
         (0,False,"A",-4.2)
     ]
     strings = [
-        "(1, 2,)",
-        "(0, False, \"A\", -4.2,)",
+        "(2, 2,)",
+        "(2, True, \"A\", 0.123,)",
     ]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj, seperator_space=True)
+        synt = lc.syntax_like(obj, seperator_space=True)
         assert synt.print() == s, f"test_tuple failed: object: {synt} != {s}"
 
 # set
 def test_set():
     objects = [
-        set([0,1.3,"A"]),
+        set([0,1.3,"B"]),
         set([None, False, "False"]),
         set([])
     ]
     strings = [
-        ["{0, 1.3, \"A\"}", "{0, \"A\", 1.3}", "{1.3, 0, \"A\"}", "{1.3, \"A\", 0}",  "{\"A\", 0, 1.3}", "{\"A\", 1.3, 0}"],
-        ["{None, False, \"False\"}", "{None, \"False\", False}", "{False, None, \"False\"}", "{False, \"False\", None}",  "{\"False\", False, None}", "{\"False\", None, False}"],
+        ["{2, 0.123, \"A\"}", "{2, \"A\", 0.123}", "{0.123, 2, \"A\"}", "{0.123, \"A\", 2}",  "{\"A\", 2, 0.123}", "{\"A\", 0.123, 2}"],
+        ["{None, True, \"ABCDE\"}", "{None, \"ABCDE\", True}", "{True, None, \"ABCDE\"}", "{True, \"ABCDE\", None}",  "{\"ABCDE\", True, None}", "{\"ABCDE\", None, True}"],
         ["{}"],
     ]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj, seperator_space=True)
+        synt = lc.syntax_like(obj, seperator_space=True)
         assert synt.print() in s, f"test_set failed: object: {synt} not in {s}"
 
 
@@ -147,7 +148,7 @@ test_bool()
 test_nonetype()
 test_complex()
 test_list()
-test_dict()
+#test_dict()
 # test_quotes()
 # test_seperator()
 

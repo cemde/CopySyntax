@@ -56,15 +56,15 @@ def _syntax_like_iterable(obj, quotes: str, line_length: int, seperator_space: b
         val = "[" + seperator.join(val) + "]"
     elif isinstance(obj, dict):
         val = [
-            f"{syntax_like(key)}: {syntax_like(val, seperator_space=seperator_space)}"
+            f"{syntax_like(key, raw=True)}: {syntax_like(val, seperator_space=seperator_space)}"
             for key, val in obj.items()
         ]
         val = "{" + seperator.join(val) + "}"
     elif isinstance(obj, tuple):
-        val = [syntax_like(element) for element in obj]
+        val = [syntax_like(element, raw=True) for element in obj]
         val = "(" + seperator.join(val) + ",)"
     elif isinstance(obj, set):
-        val = [syntax_like(element) for element in obj]
+        val = [syntax_like(element, raw=True) for element in obj]
         val = "{" + seperator.join(val) + "}"
     else:
         raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
