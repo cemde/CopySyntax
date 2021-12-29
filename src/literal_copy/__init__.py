@@ -1,6 +1,6 @@
 from .syntax import syntax
 from .literal import Literal
-
+from .syntax_like import syntax_like
 
 pandas_prefix = "pd."
 numpy_prefix = "np."
