@@ -1,6 +1,8 @@
 import sys
 import os
 
+import pytest
+
 # TODO fix importing literal_copy to delete this
 sys.path.append(os.path.join(os.getcwd(), "src"))
 import literal_copy as lc
@@ -132,22 +134,25 @@ def test_set():
         assert synt.print() in s, f"test_set failed: object: {synt} not in {s}"
 
 
-# # test unkown object type
-# def test_unkown_type():
-#     class MyNonIterableType:
-#         def __init__(self, s) -> None:
-#             self.s = 5*s
+# test unkown object type
+def test_unkown_type():
+    # define custom data types which are not implemented to test error functions
+    class MyNonIterableType:
+        def __init__(self, s) -> None:
+            self.s = 5*s
     
-#     class MyIterableType:
-#         def __init__(self, s) -> None:
-#             self.s = 5*s
-#             assert False
+    class MyIterableType:
+        def __init__(self, s) -> None:
+            self.s = 5*s
+        
+        def __iter__(self):
+            pass
     
-#     objects = [MyNonIterableType(5), MyIterableType([1,2,3])]
-#     for obj in objects:
-#         synt = lc.syntax(obj, seperator_space=True)
-#         # TODO catch error
-
+    objects = [MyNonIterableType(5), MyIterableType([1,2,3])]
+    for obj in objects:
+        with pytest.raises(NotImplementedError):
+            lc.syntax(obj, seperator_space=True)
+            
       
 # test single vs double quotes
 def test_quotes():
@@ -157,6 +162,7 @@ def test_quotes():
     for obj, s, q in zip(objects, strings, quotes):
         synt = lc.syntax(obj, seperator_space=True, quotes=q)
         assert synt.print() == s, f"test_quotes failed: object: {synt} != {s}"
+
 
 # test seperator space
 def test_seperator():
@@ -168,18 +174,19 @@ def test_seperator():
         assert synt.print() == s, f"test_seperator failed: object: {synt} != {s}"
 
 
-# run tests
-test_int()
-test_float()
-test_str()
-test_bool()
-test_nonetype()
-test_complex()
-test_list()
-test_dict()
-test_tuple()
-test_set()
-test_quotes()
-test_seperator()
+# # run tests
+# test_int()
+# test_float()
+# test_str()
+# test_bool()
+# test_nonetype()
+# test_complex()
+# test_list()
+# test_dict()
+# test_tuple()
+# test_set()
+# test_unkown_type()
+# test_quotes()
+# test_seperator()
 
 print("Done: All tests passed")
