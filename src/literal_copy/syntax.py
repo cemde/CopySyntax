@@ -42,12 +42,12 @@ def syntax(
 
 
 def _syntax_atomic(obj, quotes: str, line_length: int) -> str:
-    if isinstance(obj, int):
+    if isinstance(obj, bool):
+        val = "True" if obj else "False"
+    elif isinstance(obj, int):
         val = str(obj)
     elif isinstance(obj, str):
         val = f"{quotes}" + obj + f"{quotes}"
-    elif isinstance(obj, bool):
-        val = "True" if obj else "False"
     elif isinstance(obj, float):
         val = str(obj)
     elif isinstance(obj, complex):
