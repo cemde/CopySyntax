@@ -80,3 +80,20 @@ def _syntax_iterable(obj, quotes: str, line_length: int, seperator_space: bool) 
     else:
         raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
     return string
+
+
+#######################
+###### Shortcuts ######
+#######################
+
+# s as short for syntax
+def s(**kwargs):
+    return syntax(**kwargs)
+
+# sc as short for syntax to clipboard
+def sc(**kwargs):
+    syntax(**kwargs).clipboard()
+
+# sp as short for syntax to print
+def sp(**kwargs):
+    syntax(**kwargs)
