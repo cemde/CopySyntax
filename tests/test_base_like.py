@@ -140,15 +140,15 @@ def test_set():
 #         assert synt.print() == s, f"test_quotes failed: object: {obj} != {s}"
 
 
-# run tests
-test_int()
-test_float()
-test_str()
-test_bool()
-test_nonetype()
-test_complex()
-test_list()
-#test_dict()
+# # run tests
+# test_int()
+# test_float()
+# test_str()
+# test_bool()
+# test_nonetype()
+# test_complex()
+# test_list()
+# test_dict()
 # test_quotes()
 # test_seperator()
 
