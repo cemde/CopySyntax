@@ -24,7 +24,7 @@ jobs:
         pip install tox tox-gh-actions
     - name: Print Tree
       run: |
-        tree
+        pwd && tree
     - name: Print Package Info
       run: |
         conda list
