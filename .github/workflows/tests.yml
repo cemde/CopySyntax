@@ -29,4 +29,4 @@ jobs:
       run: |
         conda list
     - name: Test with tox
-      run: tox
+      run: tox --envdir src/
