@@ -29,4 +29,4 @@ jobs:
       run: |
         conda list
     - name: Test with tox
-      run: tox --devenv src/literal_copy/
+      run: tox
