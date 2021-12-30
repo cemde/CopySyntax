@@ -27,6 +27,6 @@ jobs:
         tree
     - name: Print Package Info
       run: |
-        pip show literal-copy
+        conda list
     - name: Test with tox
       run: tox
