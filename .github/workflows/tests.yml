@@ -23,6 +23,7 @@ jobs:
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
               sudo apt-get install xsel
+        fi
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
     # - name: Print Tree
