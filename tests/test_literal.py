@@ -22,10 +22,10 @@ def test_print():
     assert captured == SYNTAX
 
 
-# def test_clipboard():
-#     LITERAL.clipboard()
-#     captured = pyperclip.paste()
-#     assert captured == SYNTAX
+def test_clipboard():
+    LITERAL.clipboard()
+    captured = pyperclip.paste()
+    assert captured == SYNTAX
 
 
 def test_save():
