@@ -28,7 +28,7 @@ jobs:
         fi
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
-        pip install PyQt4
+        pip install PyQt6
     # - name: Print Tree
     #   run: |
     #     pwd && tree
