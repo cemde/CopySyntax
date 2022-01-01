@@ -22,10 +22,14 @@ jobs:
     - name: Install dependencies
       run: |
         if [ "$RUNNER_OS" == "Linux" ]; then
+              sudo apt-get update
               sudo apt-get install xsel
+              sudo apt-get install xclip
         fi
         python -m pip install --upgrade pip
         pip install tox tox-gh-actions
+        pip install gtk
+        pip install PyQt4
     # - name: Print Tree
     #   run: |
     #     pwd && tree
