@@ -5,6 +5,7 @@ __pycache__/
 .vscode/
 *.DS_Store
 *.typed
+*.icloud
 
 # C extensions
 *.so
