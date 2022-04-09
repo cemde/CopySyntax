@@ -4,8 +4,6 @@ __pycache__/
 *$py.class
 .vscode/
 *.DS_Store
-*.typed
-*.icloud
 
 # C extensions
 *.so
