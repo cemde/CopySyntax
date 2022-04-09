@@ -90,9 +90,11 @@ def _syntax_iterable(obj, quotes: str, line_length: int, seperator_space: bool) 
 def s(**kwargs):
     return syntax(**kwargs)
 
+
 # sc as short for syntax to clipboard
 def sc(**kwargs):
     syntax(**kwargs).clipboard()
+
 
 # sp as short for syntax to print
 def sp(**kwargs):

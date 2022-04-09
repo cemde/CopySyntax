@@ -11,8 +11,8 @@ def syntax_like(
     line_length: int = -1,
     seperator_space: bool = True,
     raw: bool = False,
-    ) -> Union[str, Literal]:
-        # set correct quotes
+) -> Union[str, Literal]:
+    # set correct quotes
     if quotes not in ["single", "double", "'", '"']:
         raise ValueError(f"Valid values are `single` and `double`. Not {quotes}")
     if quotes == "single":
@@ -20,9 +20,7 @@ def syntax_like(
     elif quotes == "double":
         quotes = '"'
     if _iterable(obj):
-        val = _syntax_like_iterable(
-            obj, quotes=quotes, line_length=line_length, seperator_space=seperator_space
-        )
+        val = _syntax_like_iterable(obj, quotes=quotes, line_length=line_length, seperator_space=seperator_space)
     else:
         val = _syntax_like_atomic(obj, quotes=quotes, line_length=line_length)
     if raw:

@@ -39,9 +39,7 @@ class Literal:
         :raises OSError: If `overwrite=False` but a file exists in this path, an OSError will be raised.
         """
         if not overwrite and os.path.isfile(path):
-            raise OSError(
-                "File exists already and {overwrite=}. Select another filename or set `overwrite=True`."
-            )
+            raise OSError("File exists already and {overwrite=}. Select another filename or set `overwrite=True`.")
         with open(path, "w") as file:
             file.write(self.string)
         # TODO add option to append
