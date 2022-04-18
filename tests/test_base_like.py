@@ -4,7 +4,7 @@ import os
 import pytest
 
 # TODO fix importing literal_copy to delete this
-# sys.path.append(os.path.join(os.getcwd()))
+sys.path.append(os.path.join(os.getcwd()))
 import literal_copy as lc
 
 
@@ -83,18 +83,19 @@ def test_list():
 # dictionary
 def test_dict():
     objects = [
-        {4: 1, 3: "Bla", 1: None},
-        {"A": False, "aB": True, "9": None, "999~": complex(0, 0)},
-        {0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1, 0), "T": -1}},
+        {"A": 15, "T": 1},
+        {},
+        {1.2: True, 1.5: False},
     ]
     strings = [
-        '{2: 2, 3: "Bla", 1: None}',
-        '{"A": False, "aB": True, "9": None, "999~": complex(0.0,0.0)}',
-        '{0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1.0,0.0), "T": -1}}',
+        '{"a": 0, "b": 1}',
+        '{}',
+        '{0.0: True, 1.0: False}',
     ]
     for obj, s in zip(objects, strings):
         synt = lc.syntax_like(obj, seperator_space=True)
         assert synt.print() == s, f"test_complex failed: object: {synt} != {s}"
+
 
 # tuple
 def test_tuple():
@@ -109,6 +110,7 @@ def test_tuple():
     for obj, s in zip(objects, strings):
         synt = lc.syntax_like(obj, seperator_space=True)
         assert synt.print() == s, f"test_tuple failed: object: {synt} != {s}"
+
 
 # set
 def test_set():
@@ -126,12 +128,17 @@ def test_set():
         synt = lc.syntax_like(obj, seperator_space=True)
         assert synt.print() in s, f"test_set failed: object: {synt} not in {s}"
 
-@pytest.mark.xfail
-def test_varying_types():
-    pass
+
+@pytest.mark.parametrize("object", (["A", 1], {"A": 1, 2: 3}, {"B": 1, "C": False}))
+def test_varying_types(object):
+    with pytest.raises(ValueError) as excinfo:
+        lc.syntax_like(object, seperator_space=True)
+    msg, = excinfo.value.args
+    assert msg == f"`syntax_like` only supports `{object.__class__.__name__}` with elements of a single data types."
+
 
 @pytest.mark.xfail
 def test_unsupported_type():
     pass
 
-test_set()
+test_varying_types({"B": 1, "C": False})

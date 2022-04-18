@@ -51,7 +51,7 @@ def _syntax_like_atomic(obj, quotes: str) -> str:
 
 
 
-def _syntax_like_iterable(obj, quotes: str, seperator_space: bool, element_type: Any) -> str:
+def _syntax_like_iterable(obj: Any, quotes: str, seperator_space: bool, element_type: Any) -> str:
     seperator = ", " if seperator_space else ","
     if isinstance(obj, list):
         elements = sequence(len(obj), element_type)
@@ -59,13 +59,16 @@ def _syntax_like_iterable(obj, quotes: str, seperator_space: bool, element_type:
         string = "[" + seperator.join(elements) + "]"
         
     elif isinstance(obj, dict):
-        key_type, val_type = element_type
-        keys, vals = sequence(len(obj), key_type), sequence(len(obj), val_type)
-        after_colon = " " if seperator_space else ""
-        elements = [
-            f"{syntax(key, quotes).raw()}:{after_colon}{syntax(val, quotes, seperator_space=seperator_space).raw()}"
-            for key, val in zip(keys, vals)
-        ]
+        if element_type:
+            key_type, val_type = element_type
+            keys, vals = sequence(len(obj), key_type), sequence(len(obj), val_type)
+            after_colon = " " if seperator_space else ""
+            elements = [
+                f"{syntax(key, quotes).raw()}:{after_colon}{syntax(val, quotes, seperator_space=seperator_space).raw()}"
+                for key, val in zip(keys, vals)
+            ]
+        else:
+            elements = []
         string = "{" + seperator.join(elements) + "}"
         
     elif isinstance(obj, tuple):
@@ -99,10 +102,11 @@ def _assert_invariant_datatype(obj):
         vals = list(obj.values())
         key_type = type(keys[0])
         val_type = type(vals[0])
-        if not all(isinstance(x, key_type) for x in keys):
+        if not all(type(x) == key_type for x in keys):
             _raise_unequal_data_types_error(obj)
-        if not all(isinstance(x, val_type) for x in vals):
+        if not all(type(x) == val_type for x in vals):
             _raise_unequal_data_types_error(obj)
+        element_type = key_type, val_type
     return element_type
 
 

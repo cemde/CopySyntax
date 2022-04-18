@@ -3,6 +3,8 @@ import string
 
 
 def sequence(length: int, type_: Union[type, str]) -> Any:
+    if length == 0:
+        return []
     if type_ in ["str", str]:
         return str_sequence(length)
     elif type_ in ["int", int]:
@@ -11,8 +13,9 @@ def sequence(length: int, type_: Union[type, str]) -> Any:
         return float_sequence(length)
     elif type_ in ["bool", bool]:
         return bool_sequence(length)
-    
-      
+
+
+# TODO streamline with utils.generator
 def str_sequence(length: int) -> List[str]:
     pool = lambda i: [x*i for x in list(string.ascii_letters)]
     n_pool = len(pool(1))
