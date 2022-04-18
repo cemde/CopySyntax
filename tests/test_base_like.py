@@ -139,6 +139,7 @@ def test_varying_types(object):
 
 @pytest.mark.xfail
 def test_unsupported_type():
+    # Implement test to make sure that iterables are not nested. dont allow list of List
     pass
 
 test_varying_types({"B": 1, "C": False})

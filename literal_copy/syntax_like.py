@@ -12,6 +12,25 @@ def syntax_like(
     seperator_space: bool = True,
     raw: bool = False,
 ) -> Union[str, Literal]:
+    """ Creates an object of the same type and structure with preset values.
+
+    .. code-block::
+    :caption: A cool example
+
+        The output of this line starts with four spaces.
+    
+    :param obj: Base Object
+    :type obj: Any
+    :param quotes: Quotes to use for generating string objects, defaults to "double"
+    :type quotes: str, optional
+    :param seperator_space: Whether to use spaces between elements in iterable objects, defaults to True
+    :type seperator_space: bool, optional
+    :param raw: if ``True`` returns a string object, defaults to False
+    :type raw: bool, optional
+    :raises ValueError: if the object is not supported.
+    :return: The syntax to generate an object like the base object.
+    :rtype: Union[str, Literal]
+    """
     # set correct quotes
     if quotes not in ["single", "double", "'", '"']:
         raise ValueError(f"Valid values are `single` and `double`. Not {quotes}")
@@ -48,7 +67,6 @@ def _syntax_like_atomic(obj, quotes: str) -> str:
     else:
         raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
     return val
-
 
 
 def _syntax_like_iterable(obj: Any, quotes: str, seperator_space: bool, element_type: Any) -> str:
