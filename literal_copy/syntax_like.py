@@ -24,30 +24,30 @@ def syntax_like(
         data_type = _assert_invariant_datatype(obj)
         val = _syntax_like_iterable(obj, quotes, seperator_space, data_type)
     else:
-        raise NotImplementedError("`syntax_like` is not implemented for atomic data types.")
-        # val = _syntax_atomic(obj, quotes)
+        # raise NotImplementedError("`syntax_like` is not implemented for atomic data types.")
+        val = _syntax_like_atomic(obj, quotes)
     if raw:
         return val
     else:
         return Literal(val, type(obj))
 
 
-# def _syntax_like_atomic(obj, quotes: str) -> str:
-#     if isinstance(obj, bool):
-#         val = "True"
-#     elif isinstance(obj, int):
-#         val = str(2)
-#     elif isinstance(obj, str):
-#         val = f"{quotes}" + letters(len(obj)) + f"{quotes}"
-#     elif isinstance(obj, float):
-#         val = str(0.123)
-#     elif isinstance(obj, complex):
-#         val = f"complex(0.0,-1.0)"
-#     elif obj is None:
-#         val = "None"
-#     else:
-#         raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
-#     return val
+def _syntax_like_atomic(obj, quotes: str) -> str:
+    if isinstance(obj, bool):
+        val = "True"
+    elif isinstance(obj, int):
+        val = str(2)
+    elif isinstance(obj, str):
+        val = f"{quotes}" + letters(len(obj)) + f"{quotes}"
+    elif isinstance(obj, float):
+        val = str(0.123)
+    elif isinstance(obj, complex):
+        val = f"complex(0.0,-1.0)"
+    elif obj is None:
+        val = "None"
+    else:
+        raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
+    return val
 
 
 

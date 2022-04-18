@@ -37,7 +37,7 @@ def syntax(
     return Literal(val, str(type(obj)))
 
 
-def _syntax_atomic(obj, quotes: str, line_length: int) -> str:
+def _syntax_atomic(obj, quotes: str) -> str:
     if isinstance(obj, bool):
         val = "True" if obj else "False"
     elif isinstance(obj, int):

@@ -75,21 +75,21 @@ def test_list():
         assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
 
 
-# # dictionary
-# def test_dict():
-#     objects = [
-#         {4: 1, 3: "Bla", 1: None},
-#         {"A": False, "aB": True, "9": None, "999~": complex(0, 0)},
-#         {0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1, 0), "T": -1}},
-#     ]
-#     strings = [
-#         '{2: 2, 3: "Bla", 1: None}',
-#         '{"A": False, "aB": True, "9": None, "999~": complex(0.0,0.0)}',
-#         '{0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1.0,0.0), "T": -1}}',
-#     ]
-#     for obj, s in zip(objects, strings):
-#         synt = lc.syntax(obj, seperator_space=True)
-#         assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
+# dictionary
+def test_dict():
+    objects = [
+        {4: 1, 3: "Bla", 1: None},
+        {"A": False, "aB": True, "9": None, "999~": complex(0, 0)},
+        {0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1, 0), "T": -1}},
+    ]
+    strings = [
+        '{2: 2, 3: "Bla", 1: None}',
+        '{"A": False, "aB": True, "9": None, "999~": complex(0.0,0.0)}',
+        '{0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1.0,0.0), "T": -1}}',
+    ]
+    for obj, s in zip(objects, strings):
+        synt = lc.syntax(obj, seperator_space=True)
+        assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
 
 # tuple
 def test_tuple():
