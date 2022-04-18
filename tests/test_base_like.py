@@ -1,8 +1,10 @@
 import sys
 import os
 
+import pytest
+
 # TODO fix importing literal_copy to delete this
-# sys.path.append(os.path.join(os.getcwd(), "src"))
+# sys.path.append(os.path.join(os.getcwd()))
 import literal_copy as lc
 
 
@@ -60,19 +62,22 @@ def test_complex():
 
 # List
 def test_list():
+    # TODO add string longer than 26 characters
     objects = [
         [4, 3, 1],
         ["A", "aB", "9", "999~"],
-        ["qÄ", 5, None, [False, 0.99], complex(-1, 0)],
+        [1.,1.,3.,4.],
+        [],
     ]
     strings = [
-        "[2, 2, 2]",
-        '["A", "AB", "A", "ABCD"]',
-        '["AB", 2, None, [True, 0.123], complex(0.0,-1.0)]',
+        "[0, 1, 2]",
+        '["a", "b", "c", "d"]',
+        '[0.0, 1.0, 2.0, 3.0]',
+        '[]'
     ]
     for obj, s in zip(objects, strings):
         synt = lc.syntax_like(obj)
-        assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
+        assert synt.print() == s, f"test_complex failed: object: {synt} != {s}"
 
 
 # dictionary
@@ -88,18 +93,18 @@ def test_dict():
         '{0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1.0,0.0), "T": -1}}',
     ]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj, seperator_space=True)
-        assert synt.print() == s, f"test_complex failed: object: {obj} != {s}"
+        synt = lc.syntax_like(obj, seperator_space=True)
+        assert synt.print() == s, f"test_complex failed: object: {synt} != {s}"
 
 # tuple
 def test_tuple():
     objects = [
-        (1,2),
-        (0,False,"A",-4.2)
+        (1,2,5),
+        (0.,-4.2)
     ]
     strings = [
-        "(2, 2,)",
-        "(2, True, \"A\", 0.123,)",
+        "(0, 1, 2,)",
+        "(0.0, 1.0,)",
     ]
     for obj, s in zip(objects, strings):
         synt = lc.syntax_like(obj, seperator_space=True)
@@ -108,48 +113,25 @@ def test_tuple():
 # set
 def test_set():
     objects = [
-        set([0,1.3,"B"]),
-        set([None, False, "False"]),
+        set([0.,1.3]),
+        set([False, True]),
         set([])
     ]
     strings = [
-        ["{2, 0.123, \"A\"}", "{2, \"A\", 0.123}", "{0.123, 2, \"A\"}", "{0.123, \"A\", 2}",  "{\"A\", 2, 0.123}", "{\"A\", 0.123, 2}"],
-        ["{None, True, \"ABCDE\"}", "{None, \"ABCDE\", True}", "{True, None, \"ABCDE\"}", "{True, \"ABCDE\", None}",  "{\"ABCDE\", True, None}", "{\"ABCDE\", None, True}"],
+        ["{0.0, 1.0}", "{1.0, 0.0}"],
+        ["{True, False}", "{False, True}"],
         ["{}"],
     ]
     for obj, s in zip(objects, strings):
         synt = lc.syntax_like(obj, seperator_space=True)
         assert synt.print() in s, f"test_set failed: object: {synt} not in {s}"
 
+@pytest.mark.xfail
+def test_varying_types():
+    pass
 
-# def test_quotes():
-#     objects = [["A", "B"], ["A", "B"]]
-#     strings = ["['A', 'B']", '["A", "B"]']
-#     quotes = ["single", "double"]
-#     for obj, s, q in zip(objects, strings, quotes):
-#         synt = lc.syntax(obj, seperator_space=True, quotes=q)
-#         assert synt.print() == s, f"test_quotes failed: object: {obj} != {s}"
+@pytest.mark.xfail
+def test_unsupported_type():
+    pass
 
-
-# def test_seperator():
-#     objects = [["A", "B"], ["A", "B"], {5:1, 2:["A","B"]}, {5:1, 2:["A","B"]}]
-#     strings = ['["A","B"]', '["A", "B"]', '{5:1,2:["A","B"]}', '{5: 1, 2: ["A", "B"]}']
-#     seperators = [False, True, False, True]
-#     for obj, s, sep in zip(objects, strings, seperators):
-#         synt = lc.syntax(obj, seperator_space=sep)
-#         assert synt.print() == s, f"test_quotes failed: object: {obj} != {s}"
-
-
-# # run tests
-# test_int()
-# test_float()
-# test_str()
-# test_bool()
-# test_nonetype()
-# test_complex()
-# test_list()
-# test_dict()
-# test_quotes()
-# test_seperator()
-
-print("Done: All tests passed")
+test_set()

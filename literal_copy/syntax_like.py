@@ -84,12 +84,14 @@ def _syntax_like_iterable(obj, quotes: str, seperator_space: bool, element_type:
 
 
 def _assert_invariant_datatype(obj):
+    if not obj:
+        return None
     if isinstance(obj, (list, tuple)):
         element_type = type(obj[0])
         if not all(isinstance(x, element_type) for x in obj):
             _raise_unequal_data_types_error(obj)
     elif isinstance(obj, set):
-        element_type = next(iter(obj))
+        element_type = type(next(iter(obj)))
         if not all(isinstance(x, element_type) for x in obj):
             _raise_unequal_data_types_error(obj)        
     elif isinstance(obj, dict):
