@@ -5,7 +5,7 @@ import pytest
 
 
 # TODO fix importing literal_copy to delete this
-#sys.path.append(os.path.join(os.getcwd(), "src"))
+# sys.path.append(os.path.join(os.getcwd(), "src"))
 import literal_copy as lc
 
 
@@ -106,28 +106,29 @@ def test_dict():
 
 # tuple
 def test_tuple():
-    objects = [
-        (1,2),
-        (0,False,"A",-4.2)
-    ]
+    objects = [(1, 2), (0, False, "A", -4.2)]
     strings = [
         "(1, 2,)",
-        "(0, False, \"A\", -4.2,)",
+        '(0, False, "A", -4.2,)',
     ]
     for obj, s in zip(objects, strings):
         synt = lc.syntax(obj, seperator_space=True)
         assert synt.print() == s, f"test_tuple failed: object: {synt} != {s}"
 
+
 # set
 def test_set():
-    objects = [
-        set([0,1.3,"A"]),
-        set([None, False, "False"]),
-        set([])
-    ]
+    objects = [set([0, 1.3, "A"]), set([None, False, "False"]), set([])]
     strings = [
-        ["{0, 1.3, \"A\"}", "{0, \"A\", 1.3}", "{1.3, 0, \"A\"}", "{1.3, \"A\", 0}",  "{\"A\", 0, 1.3}", "{\"A\", 1.3, 0}"],
-        ["{None, False, \"False\"}", "{None, \"False\", False}", "{False, None, \"False\"}", "{False, \"False\", None}",  "{\"False\", False, None}", "{\"False\", None, False}"],
+        ['{0, 1.3, "A"}', '{0, "A", 1.3}', '{1.3, 0, "A"}', '{1.3, "A", 0}', '{"A", 0, 1.3}', '{"A", 1.3, 0}'],
+        [
+            '{None, False, "False"}',
+            '{None, "False", False}',
+            '{False, None, "False"}',
+            '{False, "False", None}',
+            '{"False", False, None}',
+            '{"False", None, False}',
+        ],
         ["{}"],
     ]
     for obj, s in zip(objects, strings):
@@ -140,21 +141,21 @@ def test_unkown_type():
     # define custom data types which are not implemented to test error functions
     class MyNonIterableType:
         def __init__(self, s) -> None:
-            self.s = 5*s
-    
+            self.s = 5 * s
+
     class MyIterableType:
         def __init__(self, s) -> None:
-            self.s = 5*s
-        
+            self.s = 5 * s
+
         def __iter__(self):
             pass
-    
-    objects = [MyNonIterableType(5), MyIterableType([1,2,3])]
+
+    objects = [MyNonIterableType(5), MyIterableType([1, 2, 3])]
     for obj in objects:
         with pytest.raises(NotImplementedError):
             lc.syntax(obj, seperator_space=True)
-            
-      
+
+
 # test single vs double quotes
 def test_quotes():
     objects = [["A", "B"], ["A", "B"]]
@@ -167,7 +168,7 @@ def test_quotes():
 
 # test seperator space
 def test_seperator():
-    objects = [["A", "B"], ["A", "B"], {5:1, 2:["A","B"]}, {5:1, 2:["A","B"]}]
+    objects = [["A", "B"], ["A", "B"], {5: 1, 2: ["A", "B"]}, {5: 1, 2: ["A", "B"]}]
     strings = ['["A","B"]', '["A", "B"]', '{5:1,2:["A","B"]}', '{5: 1, 2: ["A", "B"]}']
     seperators = [False, True, False, True]
     for obj, s, sep in zip(objects, strings, seperators):
