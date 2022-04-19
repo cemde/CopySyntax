@@ -4,6 +4,7 @@ from .utils.iterable import _iterable
 from .literal import Literal
 from .types import _syntax_numpy
 
+
 def syntax(
     obj: Any,
     quotes: str = "double",

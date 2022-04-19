@@ -3,7 +3,7 @@ import string
 
 
 def sequence(length: int, type_: Union[type, str]) -> List[Any]:
-    """ Generates lists with sequences of specified data types.
+    """Generates lists with sequences of specified data types.
 
     :param length: Length of the generated sequence.
     :type length: int
@@ -26,7 +26,7 @@ def sequence(length: int, type_: Union[type, str]) -> List[Any]:
 
 # TODO streamline with utils.generator
 def _str_sequence(length: int) -> List[str]:
-    pool = lambda i: [x*i for x in list(string.ascii_letters)]
+    pool = lambda i: [x * i for x in list(string.ascii_letters)]
     n_pool = len(pool(1))
     result = []
     step = 1
@@ -50,5 +50,4 @@ def _float_sequence(length: int) -> List[float]:
 
 
 def _bool_sequence(length: int) -> List[bool]:
-    return [bool((i+1) % 2) for i in range(length)]
-    
+    return [bool((i + 1) % 2) for i in range(length)]

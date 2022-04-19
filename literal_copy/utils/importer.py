@@ -9,6 +9,7 @@ def _pkg_is_installed(package_name):
 
 # https://stackoverflow.com/questions/1051254/check-if-python-package-is-installed
 
+
 def _import_package_if_exists(name):
     if name in sys.modules:
         pass

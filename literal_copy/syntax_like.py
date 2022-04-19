@@ -1,4 +1,4 @@
-from typing import Any, Union, List, Optional
+from typing import Any, Union
 
 from .utils.iterable import _iterable
 from .utils.generators import letters
@@ -6,19 +6,20 @@ from .literal import Literal
 from .sequence import sequence
 from .syntax import syntax
 
+
 def syntax_like(
     obj: Any,
     quotes: str = "double",
     seperator_space: bool = True,
     raw: bool = False,
 ) -> Union[str, Literal]:
-    """ Creates an object of the same type and structure with preset values.
+    """Creates an object of the same type and structure with preset values.
 
     .. code-block::
     :caption: A cool example
 
         The output of this line starts with four spaces.
-    
+
     :param obj: Base Object
     :type obj: Any
     :param quotes: Quotes to use for generating string objects, defaults to "double"
@@ -38,7 +39,7 @@ def syntax_like(
         quotes = "'"
     elif quotes == "double":
         quotes = '"'
-    
+
     if _iterable(obj):
         data_type = _assert_invariant_datatype(obj)
         val = _syntax_like_iterable(obj, quotes, seperator_space, data_type)
@@ -61,7 +62,7 @@ def _syntax_like_atomic(obj, quotes: str) -> str:
     elif isinstance(obj, float):
         val = str(0.123)
     elif isinstance(obj, complex):
-        val = f"complex(0.0,-1.0)"
+        val = "complex(0.0,-1.0)"
     elif obj is None:
         val = "None"
     else:
@@ -75,7 +76,7 @@ def _syntax_like_iterable(obj: Any, quotes: str, seperator_space: bool, element_
         elements = sequence(len(obj), element_type)
         elements = [syntax(val, quotes).raw() for val in elements]
         string = "[" + seperator.join(elements) + "]"
-        
+
     elif isinstance(obj, dict):
         if element_type:
             key_type, val_type = element_type
@@ -88,17 +89,17 @@ def _syntax_like_iterable(obj: Any, quotes: str, seperator_space: bool, element_
         else:
             elements = []
         string = "{" + seperator.join(elements) + "}"
-        
+
     elif isinstance(obj, tuple):
         elements = sequence(len(obj), element_type)
         elements = [syntax(val, quotes).raw() for val in elements]
         string = "(" + seperator.join(elements) + ",)"
-        
+
     elif isinstance(obj, set):
         elements = sequence(len(obj), element_type)
         elements = [syntax(val, quotes).raw() for val in elements]
         string = "{" + seperator.join(elements) + "}"
-        
+
     else:
         raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
     return string
@@ -114,7 +115,7 @@ def _assert_invariant_datatype(obj):
     elif isinstance(obj, set):
         element_type = type(next(iter(obj)))
         if not all(isinstance(x, element_type) for x in obj):
-            _raise_unequal_data_types_error(obj)        
+            _raise_unequal_data_types_error(obj)
     elif isinstance(obj, dict):
         keys = list(obj.keys())
         vals = list(obj.values())
@@ -129,4 +130,4 @@ def _assert_invariant_datatype(obj):
 
 
 def _raise_unequal_data_types_error(obj):
-    raise ValueError(f'`syntax_like` only supports `{obj.__class__.__name__}` with elements of a single data types.')
+    raise ValueError(f"`syntax_like` only supports `{obj.__class__.__name__}` with elements of a single data types.")

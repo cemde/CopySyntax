@@ -26,8 +26,16 @@ def test_float():
 
 # str
 def test_str():
-    objects = ["Aa<?!~~tÜÄÖ09", "", "None", "False", '"Test"', "'Test'", "a"*100]
-    strings = ['\"ABCDEFGHIJKLM\"', '\"\"', '\"ABCD\"', '\"ABCDE\"', '\"ABCDEF\"', '\"ABCDEF\"', '\"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkl\"']
+    objects = ["Aa<?!~~tÜÄÖ09", "", "None", "False", '"Test"', "'Test'", "a" * 100]
+    strings = [
+        '"ABCDEFGHIJKLM"',
+        '""',
+        '"ABCD"',
+        '"ABCDE"',
+        '"ABCDEF"',
+        '"ABCDEF"',
+        '"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijkl"',
+    ]
     for obj, s in zip(objects, strings):
         synt = lc.syntax_like(obj)
         assert synt.print() == s, f"test_str failed: object: {obj} != {s}"
@@ -66,15 +74,10 @@ def test_list():
     objects = [
         [4, 3, 1],
         ["A", "aB", "9", "999~"],
-        [1.,1.,3.,4.],
+        [1.0, 1.0, 3.0, 4.0],
         [],
     ]
-    strings = [
-        "[0, 1, 2]",
-        '["a", "b", "c", "d"]',
-        '[0.0, 1.0, 2.0, 3.0]',
-        '[]'
-    ]
+    strings = ["[0, 1, 2]", '["a", "b", "c", "d"]', "[0.0, 1.0, 2.0, 3.0]", "[]"]
     for obj, s in zip(objects, strings):
         synt = lc.syntax_like(obj)
         assert synt.print() == s, f"test_complex failed: object: {synt} != {s}"
@@ -89,8 +92,8 @@ def test_dict():
     ]
     strings = [
         '{"a": 0, "b": 1}',
-        '{}',
-        '{0.0: True, 1.0: False}',
+        "{}",
+        "{0.0: True, 1.0: False}",
     ]
     for obj, s in zip(objects, strings):
         synt = lc.syntax_like(obj, seperator_space=True)
@@ -99,10 +102,7 @@ def test_dict():
 
 # tuple
 def test_tuple():
-    objects = [
-        (1,2,5),
-        (0.,-4.2)
-    ]
+    objects = [(1, 2, 5), (0.0, -4.2)]
     strings = [
         "(0, 1, 2,)",
         "(0.0, 1.0,)",
@@ -114,11 +114,7 @@ def test_tuple():
 
 # set
 def test_set():
-    objects = [
-        set([0.,1.3]),
-        set([False, True]),
-        set([])
-    ]
+    objects = [set([0.0, 1.3]), set([False, True]), set([])]
     strings = [
         ["{0.0, 1.0}", "{1.0, 0.0}"],
         ["{True, False}", "{False, True}"],
@@ -133,7 +129,7 @@ def test_set():
 def test_varying_types(object):
     with pytest.raises(ValueError) as excinfo:
         lc.syntax_like(object, seperator_space=True)
-    msg, = excinfo.value.args
+    (msg,) = excinfo.value.args
     assert msg == f"`syntax_like` only supports `{object.__class__.__name__}` with elements of a single data types."
 
 
@@ -141,5 +137,6 @@ def test_varying_types(object):
 def test_unsupported_type():
     # Implement test to make sure that iterables are not nested. dont allow list of List
     pass
+
 
 test_varying_types({"B": 1, "C": False})
