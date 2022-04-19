@@ -2,12 +2,11 @@ from typing import Any
 
 from .utils.iterable import _iterable
 from .literal import Literal
-
+from .types import _syntax_numpy
 
 def syntax(
     obj: Any,
     quotes: str = "double",
-    line_length: int = -1,
     seperator_space: bool = True,
 ) -> Literal:
     """Creates the string containing the syntax to recreate the same object. For example, with `a=["A",5]`
@@ -17,9 +16,6 @@ def syntax(
     :type obj: Any
     :param quotes: Sets quotes to signle or double quotes. Allowed values `single` or `double`, defaults to `double`
     :type quotes: str, optional
-    :param line_length: Breaks up the syntax into multiple lines. Fo example, the syntax for a long list will be shown in multiple lines if it is longer
-    than `line_length`, defaults to -1
-    :type line_length: int, optional
     :param seperator_space: Decides wether a string will be placed between members of an interable. For example: `[4,5]` or `[4, 5]`, defaults to True
     :type seperator_space: bool, optional
     :return: Returns a syntax string, either as `str` or `Literal` object, depending on the `raw` argument.
@@ -34,14 +30,14 @@ def syntax(
         quotes = '"'
 
     if _iterable(obj):
-        val = _syntax_iterable(obj, quotes, line_length, seperator_space)
+        val = _syntax_iterable(obj, quotes, seperator_space)
     else:
-        val = _syntax_atomic(obj, quotes, line_length)
+        val = _syntax_atomic(obj, quotes)
 
     return Literal(val, str(type(obj)))
 
 
-def _syntax_atomic(obj, quotes: str, line_length: int) -> str:
+def _syntax_atomic(obj, quotes: str) -> str:
     if isinstance(obj, bool):
         val = "True" if obj else "False"
     elif isinstance(obj, int):
@@ -59,7 +55,7 @@ def _syntax_atomic(obj, quotes: str, line_length: int) -> str:
     return val
 
 
-def _syntax_iterable(obj, quotes: str, line_length: int, seperator_space: bool) -> str:
+def _syntax_iterable(obj, quotes: str, seperator_space: bool) -> str:
     seperator = ", " if seperator_space else ","
     if isinstance(obj, list):
         elements = [syntax(val, quotes).raw() for val in obj]
@@ -90,9 +86,11 @@ def _syntax_iterable(obj, quotes: str, line_length: int, seperator_space: bool) 
 def s(**kwargs):
     return syntax(**kwargs)
 
+
 # sc as short for syntax to clipboard
 def sc(**kwargs):
     syntax(**kwargs).clipboard()
+
 
 # sp as short for syntax to print
 def sp(**kwargs):

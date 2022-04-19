@@ -173,21 +173,3 @@ def test_seperator():
     for obj, s, sep in zip(objects, strings, seperators):
         synt = lc.syntax(obj, seperator_space=sep)
         assert synt.print() == s, f"test_seperator failed: object: {synt} != {s}"
-
-
-# # run tests
-# test_int()
-# test_float()
-# test_str()
-# test_bool()
-# test_nonetype()
-# test_complex()
-# test_list()
-# test_dict()
-# test_tuple()
-# test_set()
-# test_unkown_type()
-# test_quotes()
-# test_seperator()
-
-print("Done: All tests passed")

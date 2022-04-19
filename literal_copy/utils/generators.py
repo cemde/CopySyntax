@@ -1,6 +1,7 @@
 import itertools
 from string import ascii_lowercase, ascii_uppercase
 
+
 def letters(length):
     if length == 0:
         return ""
@@ -12,4 +13,3 @@ def letters(length):
             break
     seq = "".join(seq)
     return seq
-    
