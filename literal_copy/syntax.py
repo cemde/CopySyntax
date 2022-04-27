@@ -30,6 +30,13 @@ def syntax(
     elif quotes == "double":
         quotes = '"'
 
+    try:
+        import numpy as np
+        if isinstance(obj, np.ndarray):
+            val = _syntax_numpy(obj, quotes, seperator_space)
+    except ModuleNotFoundError:
+        pass
+    
     if _iterable(obj):
         val = _syntax_iterable(obj, quotes, seperator_space)
     else:
