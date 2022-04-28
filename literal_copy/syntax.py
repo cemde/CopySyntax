@@ -45,45 +45,8 @@ def syntax(
     return Literal(val, str(type(obj)))
 
 
-def _syntax_atomic(obj, quotes: str) -> str:
-    if isinstance(obj, bool):
-        val = "True" if obj else "False"
-    elif isinstance(obj, int):
-        val = str(obj)
-    elif isinstance(obj, str):
-        val = f"{quotes}" + obj + f"{quotes}"
-    elif isinstance(obj, float):
-        val = str(obj)
-    elif isinstance(obj, complex):
-        val = f"complex({obj.real},{obj.imag})"
-    elif obj is None:
-        val = "None"
-    else:
-        raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
-    return val
 
 
-def _syntax_iterable(obj, quotes: str, seperator_space: bool) -> str:
-    seperator = ", " if seperator_space else ","
-    if isinstance(obj, list):
-        elements = [syntax(val, quotes).raw() for val in obj]
-        string = "[" + seperator.join(elements) + "]"
-    elif isinstance(obj, dict):
-        after_colon = " " if seperator_space else ""
-        elements = [
-            f"{syntax(key, quotes).raw()}:{after_colon}{syntax(val, quotes, seperator_space=seperator_space).raw()}"
-            for key, val in obj.items()
-        ]
-        string = "{" + seperator.join(elements) + "}"
-    elif isinstance(obj, tuple):
-        elements = [syntax(val, quotes).raw() for val in obj]
-        string = "(" + seperator.join(elements) + ",)"
-    elif isinstance(obj, set):
-        elements = [syntax(val, quotes).raw() for val in obj]
-        string = "{" + seperator.join(elements) + "}"
-    else:
-        raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
-    return string
 
 
 #######################
