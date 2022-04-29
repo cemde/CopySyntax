@@ -2,7 +2,7 @@ from typing import Any
 
 from .utils.iterable import _iterable
 from .literal import Literal
-from .data_types import _syntax_numpy
+from .data_types import _syntax_numpy, _syntax_atomic, _syntax_iterable
 
 
 def syntax(

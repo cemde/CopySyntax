@@ -1,5 +1,3 @@
-
-
 def _syntax_atomic(obj, quotes: str) -> str:
     if isinstance(obj, bool):
         val = "True" if obj else "False"
@@ -16,3 +14,5 @@ def _syntax_atomic(obj, quotes: str) -> str:
     else:
         raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
     return val
+
+__all__ = [_syntax_atomic]
