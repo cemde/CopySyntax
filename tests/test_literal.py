@@ -6,7 +6,7 @@ import pytest
 
 # TODO fix importing literal_copy to delete this
 # sys.path.append(os.path.join(os.getcwd(), "src"))
-import literal_copy as lc
+import copy_syntax as lc
 
 SYNTAX = '[4,5,"A",(5,False)]'
 TYPE = "List"

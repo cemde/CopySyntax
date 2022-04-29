@@ -1,4 +1,4 @@
-import literal_copy as lc
+import copy_syntax as lc
 
 
 def _syntax_iterable(obj, quotes: str, seperator_space: bool) -> str:

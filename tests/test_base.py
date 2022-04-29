@@ -1,6 +1,6 @@
 import pytest
 
-import literal_copy as lc
+import copy_syntax as lc
 
 
 # int

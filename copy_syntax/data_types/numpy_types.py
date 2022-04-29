@@ -1,7 +1,7 @@
 from typing import Any
 import numpy as np
 
-import literal_copy as lc
+import copy_syntax as lc
 
 
 def _syntax_numpy(obj: np.ndarray, quotes: str = "double", seperator_space: bool = True) -> str:

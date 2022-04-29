@@ -1,4 +1,4 @@
-import literal_copy as lc
+import copy_syntax as lc
 
 custom_string = "progress"
 
