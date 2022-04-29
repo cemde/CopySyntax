@@ -32,21 +32,20 @@ def syntax(
 
     try:
         import numpy as np
+
         if isinstance(obj, np.ndarray):
             val = _syntax_numpy(obj, quotes, seperator_space)
+            return Literal(val, str(type(obj)))
+
     except ModuleNotFoundError:
         pass
-    
+
     if _iterable(obj):
         val = _syntax_iterable(obj, quotes, seperator_space)
     else:
         val = _syntax_atomic(obj, quotes)
 
     return Literal(val, str(type(obj)))
-
-
-
-
 
 
 #######################

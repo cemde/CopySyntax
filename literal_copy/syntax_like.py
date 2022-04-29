@@ -5,7 +5,7 @@ from .utils.generators import letters
 from .literal import Literal
 from .sequence import sequence
 from .syntax import syntax
-
+from .data_types import _syntax_like_numpy
 
 def syntax_like(
     obj: Any,
@@ -39,6 +39,18 @@ def syntax_like(
         quotes = "'"
     elif quotes == "double":
         quotes = '"'
+
+    try:
+        import numpy as np
+
+        if isinstance(obj, np.ndarray):
+            val = _syntax_like_numpy(obj, quotes, seperator_space)
+            return Literal(val, str(type(obj)))
+
+    except ModuleNotFoundError:
+        pass
+
+
 
     if _iterable(obj):
         data_type = _assert_invariant_datatype(obj)

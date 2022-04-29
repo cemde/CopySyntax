@@ -12,7 +12,8 @@ def _syntax_atomic(obj, quotes: str) -> str:
     elif obj is None:
         val = "None"
     else:
-        raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
+        raise TypeError(f"Object type '{type(obj).__name__}' not supported.")
     return val
+
 
 __all__ = [_syntax_atomic]
