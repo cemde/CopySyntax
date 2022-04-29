@@ -145,9 +145,12 @@ def test_unkown_type():
             pass
 
     objects = [MyNonIterableType(5), MyIterableType([1, 2, 3])]
-    for obj in objects:
-        with pytest.raises(NotImplementedError):
+    error_messages = [f"Object type '{t}' not supported." for t in ["MyNonIterableType", "MyIterableType"]]
+    for obj, em in zip(objects, error_messages):
+        with pytest.raises(TypeError) as excinfo:
             lc.syntax(obj, seperator_space=True)
+        msg, = excinfo.value.args
+        assert msg == em
 
 
 # test single vs double quotes

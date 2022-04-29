@@ -78,7 +78,7 @@ def _syntax_like_atomic(obj, quotes: str) -> str:
     elif obj is None:
         val = "None"
     else:
-        raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
+        raise NotImplementedError(f"Object type '{type(obj)}' not supported.")
     return val
 
 

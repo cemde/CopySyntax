@@ -20,5 +20,5 @@ def _syntax_iterable(obj, quotes: str, seperator_space: bool) -> str:
         elements = [lc.syntax(val, quotes).raw() for val in obj]
         string = "{" + seperator.join(elements) + "}"
     else:
-        raise NotImplementedError(f"Object type '{type(obj)}' not implemented.")
+        raise TypeError(f"Object type '{type(obj).__name__}' not supported.")
     return string
