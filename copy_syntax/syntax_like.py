@@ -7,6 +7,7 @@ from .sequence import sequence
 from .syntax import syntax
 from .data_types import _syntax_like_numpy
 
+
 def syntax_like(
     obj: Any,
     quotes: str = "double",
@@ -49,8 +50,6 @@ def syntax_like(
 
     except ModuleNotFoundError:
         pass
-
-
 
     if _iterable(obj):
         data_type = _assert_invariant_datatype(obj)

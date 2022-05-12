@@ -9,7 +9,8 @@ def _syntax_iterable(obj, quotes: str, seperator_space: bool) -> str:
     elif isinstance(obj, dict):
         after_colon = " " if seperator_space else ""
         elements = [
-            f"{lc.syntax(key, quotes).raw()}:{after_colon}{lc.syntax(val, quotes, seperator_space=seperator_space).raw()}"
+            f"{lc.syntax(key, quotes).raw()}:"
+            + f"{after_colon}{lc.syntax(val, quotes, seperator_space=seperator_space).raw()}"
             for key, val in obj.items()
         ]
         string = "{" + seperator.join(elements) + "}"

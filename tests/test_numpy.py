@@ -1,4 +1,3 @@
-from typing import Type
 import numpy as np
 import pytest
 
@@ -31,7 +30,7 @@ def test_syntax():
 def test_array_raises_type_error():
     obj = np.array([UselessObject(), UselessObject()])
     with pytest.raises(TypeError) as excinfo:
-        synt = lc.syntax(obj)
+        lc.syntax(obj)
     (msg,) = excinfo.value.args
     assert msg == 'Numpy Arrays with dtype "object" are not supported.'
 

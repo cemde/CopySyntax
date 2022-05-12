@@ -24,19 +24,22 @@ def sequence(length: int, type_: Union[type, str]) -> List[Any]:
         return _bool_sequence(length)
 
 
+def _letter_pool(i: int) -> List[str]:
+    return [x * i for x in list(string.ascii_letters)]
+
+
 # TODO streamline with utils.generator
 def _str_sequence(length: int) -> List[str]:
-    pool = lambda i: [x * i for x in list(string.ascii_letters)]
-    n_pool = len(pool(1))
+    n_pool = len(_letter_pool(1))
     result = []
     step = 1
     while 0 < length:
         if length // n_pool > 0:
-            l = n_pool
+            len_ = n_pool
         else:
-            l = length % n_pool
-        result.extend(pool(step)[:l])
-        length -= l
+            len_ = length % n_pool
+        result.extend(_letter_pool(step)[:len_])
+        length -= len_
         step += 1
     return result
 

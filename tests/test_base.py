@@ -149,7 +149,7 @@ def test_unkown_type():
     for obj, em in zip(objects, error_messages):
         with pytest.raises(TypeError) as excinfo:
             cs.syntax(obj, seperator_space=True)
-        msg, = excinfo.value.args
+        (msg,) = excinfo.value.args
         assert msg == em
 
 

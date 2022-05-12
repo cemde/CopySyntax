@@ -1,10 +1,5 @@
-import sys
-import os
-
 import pytest
 
-# TODO fix importing literal_copy to delete this
-sys.path.append(os.path.join(os.getcwd()))
 import copy_syntax as lc
 
 
