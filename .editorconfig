@@ -16,3 +16,6 @@ insert_final_newline = false
 
 [*.{diff,patch}]
 trim_trailing_whitespace = false
+
+[*.yml]
+indent_size = 2
