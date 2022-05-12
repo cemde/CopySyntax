@@ -1,6 +1,6 @@
 import pytest
 
-import copy_syntax as lc
+import copy_syntax as cs
 
 
 # int
@@ -8,7 +8,7 @@ def test_int():
     objects = [-10, 0, 1, 23633]
     strings = ["-10", "0", "1", "23633"]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj)
+        synt = cs.syntax(obj)
         assert synt.print() == s, f"test_int failed: object: {synt} != {s}"
 
 
@@ -17,7 +17,7 @@ def test_float():
     objects = [0.0, -44.1, 0.9999999999999999]
     strings = ["0.0", "-44.1", "0.9999999999999999"]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj)
+        synt = cs.syntax(obj)
         assert synt.print() == s, f"test_float failed: object: {synt} != {s}"
 
 
@@ -33,7 +33,7 @@ def test_str():
         "\"'Test'\"",
     ]  # TODO think about how to mask quotes properly
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj)
+        synt = cs.syntax(obj)
         assert synt.print() == s, f"test_str failed: object: {synt} != {s}"
 
 
@@ -42,7 +42,7 @@ def test_bool():
     objects = [True, False]
     strings = ["True", "False"]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj)
+        synt = cs.syntax(obj)
         assert synt.print() == s, f"test_bool failed: object: {synt} != {s}"
 
 
@@ -51,7 +51,7 @@ def test_nonetype():
     objects = [None]
     strings = ["None"]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj)
+        synt = cs.syntax(obj)
         assert synt.print() == s, f"test_none failed: object: {synt} != {s}"
 
 
@@ -60,7 +60,7 @@ def test_complex():
     objects = [complex(0, 0), complex(-99, -99), complex(1.056, 2.11)]
     strings = ["complex(0.0,0.0)", "complex(-99.0,-99.0)", "complex(1.056,2.11)"]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj)
+        synt = cs.syntax(obj)
         assert synt.print() == s, f"test_complex failed: object: {synt} != {s}"
 
 
@@ -77,7 +77,7 @@ def test_list():
         '["qÄ", 5, None, [False, 0.99], complex(-1.0,0.0)]',
     ]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj)
+        synt = cs.syntax(obj)
         assert synt.print() == s, f"test_list failed: object: {synt} != {s}"
 
 
@@ -94,7 +94,7 @@ def test_dict():
         '{0: 5, 1: None, 2: [False, 0.99], 3: {"A": complex(-1.0,0.0), "T": -1}}',
     ]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj, seperator_space=True)
+        synt = cs.syntax(obj, seperator_space=True)
         assert synt.print() == s, f"test_dict failed: object: {synt} != {s}"
 
 
@@ -106,7 +106,7 @@ def test_tuple():
         '(0, False, "A", -4.2,)',
     ]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj, seperator_space=True)
+        synt = cs.syntax(obj, seperator_space=True)
         assert synt.print() == s, f"test_tuple failed: object: {synt} != {s}"
 
 
@@ -126,7 +126,7 @@ def test_set():
         ["{}"],
     ]
     for obj, s in zip(objects, strings):
-        synt = lc.syntax(obj, seperator_space=True)
+        synt = cs.syntax(obj, seperator_space=True)
         assert synt.print() in s, f"test_set failed: object: {synt} not in {s}"
 
 
@@ -148,7 +148,7 @@ def test_unkown_type():
     error_messages = [f"Object type '{t}' not supported." for t in ["MyNonIterableType", "MyIterableType"]]
     for obj, em in zip(objects, error_messages):
         with pytest.raises(TypeError) as excinfo:
-            lc.syntax(obj, seperator_space=True)
+            cs.syntax(obj, seperator_space=True)
         msg, = excinfo.value.args
         assert msg == em
 
@@ -159,7 +159,7 @@ def test_quotes():
     strings = ["['A', 'B']", '["A", "B"]']
     quotes = ["single", "double"]
     for obj, s, q in zip(objects, strings, quotes):
-        synt = lc.syntax(obj, seperator_space=True, quotes=q)
+        synt = cs.syntax(obj, seperator_space=True, quotes=q)
         assert synt.print() == s, f"test_quotes failed: object: {synt} != {s}"
 
 
@@ -169,5 +169,5 @@ def test_seperator():
     strings = ['["A","B"]', '["A", "B"]', '{5:1,2:["A","B"]}', '{5: 1, 2: ["A", "B"]}']
     seperators = [False, True, False, True]
     for obj, s, sep in zip(objects, strings, seperators):
-        synt = lc.syntax(obj, seperator_space=sep)
+        synt = cs.syntax(obj, seperator_space=sep)
         assert synt.print() == s, f"test_seperator failed: object: {synt} != {s}"
