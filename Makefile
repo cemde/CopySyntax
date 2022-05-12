@@ -37,8 +37,8 @@ format:
 	isort -rc . ;\
 	autoflake -r --in-place --remove-unused-variables $(package_name)/ ;\
 	autoflake -r --in-place --remove-unused-variables tests/ ;\
-	black $(package_name)/ --skip-string-normalization ;\
-	black tests/ --skip-string-normalization
+	black $(package_name)/ --skip-string-normalization --line-length 120 ;\
+	black tests/ --skip-string-normalization --line-length 120
 
 checkformat:
 	. $(venv_activate_path) ;\
