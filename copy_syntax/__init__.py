@@ -13,4 +13,12 @@ pytorch_prefix = "torch."
 #        self.string = string
 # def set_prefix(package):
 
-__all__ = [syntax, Literal, syntax_like, sequence, pandas_prefix, numpy_prefix, pytorch_prefix]
+__all__ = [
+    syntax,
+    Literal,
+    syntax_like,
+    sequence,
+    pandas_prefix,
+    numpy_prefix,
+    pytorch_prefix,
+]
