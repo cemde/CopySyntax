@@ -3,6 +3,7 @@ venv_activate_path := ./$(venv_name)/bin/activate
 package_name = copy_syntax
 cov_args := --cov $(package_name) --cov-report=term-missing
 not_slow = -m "not slow"
+linelength = 120
 
 .PHONY: clean venv lint cov slowcov docs
 
@@ -37,13 +38,13 @@ format:
 	isort -rc . ;\
 	autoflake -r --in-place --remove-unused-variables $(package_name)/ ;\
 	autoflake -r --in-place --remove-unused-variables tests/ ;\
-	black $(package_name)/ --line-length 120 --skip-string-normalization ;\
-	black tests/ --line-length 120 --skip-string-normalization
+	black $(package_name)/ --line-length $(linelength) --skip-string-normalization ;\
+	black tests/ --line-length $(linelength) --skip-string-normalization
 
 checkformat:
 	. $(venv_activate_path) ;\
-	black $(package_name)/ --skip-string-normalization --check ;\
-	black tests/ --skip-string-normalization --check
+	black $(package_name)/ --line-length $(linelength) --skip-string-normalization --check ;\
+	black tests/ --line-length $(linelength) --skip-string-normalization --check
 
 docs:
 	. $(venv_activate_path) ;\
