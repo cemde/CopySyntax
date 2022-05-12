@@ -17,7 +17,8 @@ def syntax(
     :type obj: Any
     :param quotes: Sets quotes to signle or double quotes. Allowed values `single` or `double`, defaults to `double`
     :type quotes: str, optional
-    :param seperator_space: Decides wether a string will be placed between members of an interable. For example: `[4,5]` or `[4, 5]`, defaults to True
+    :param seperator_space: Decides wether a string will be placed between members of an interable.
+        For example: `[4,5]` or `[4, 5]`, defaults to True
     :type seperator_space: bool, optional
     :return: Returns a syntax string, either as `str` or `Literal` object, depending on the `raw` argument.
     :rtype: Union[str, Literal]
@@ -48,9 +49,9 @@ def syntax(
     return Literal(val, str(type(obj)))
 
 
-#######################
-###### Shortcuts ######
-#######################
+#######################  # noqa
+###### Shortcuts ######  # noqa
+#######################  # noqa
 
 # s as short for syntax
 def s(**kwargs):

@@ -1,11 +1,3 @@
-import sys
-import os
-import pyperclip
-
-import pytest
-
-# TODO fix importing literal_copy to delete this
-# sys.path.append(os.path.join(os.getcwd(), "src"))
 import copy_syntax as lc
 
 
@@ -77,8 +69,8 @@ def test_str_sequence():
             "hh",
         ],
     ]
-    for l, dt, seq in zip(lengths, dtypes, sequences):
-        synt = lc.sequence(l, dt)
+    for len_, dt, seq in zip(lengths, dtypes, sequences):
+        synt = lc.sequence(len_, dt)
         assert synt == seq, f"test_str_sequence failed: object: {synt} != {seq}"
 
 
@@ -86,8 +78,8 @@ def test_int_sequence():
     lengths = [2, 5]
     dtypes = [int, "int"]
     sequences = [[0, 1], [0, 1, 2, 3, 4]]
-    for l, dt, seq in zip(lengths, dtypes, sequences):
-        synt = lc.sequence(l, dt)
+    for len_, dt, seq in zip(lengths, dtypes, sequences):
+        synt = lc.sequence(len_, dt)
         assert synt == seq, f"test_int_sequence failed: object: {synt} != {seq}"
 
 
@@ -95,8 +87,8 @@ def test_float_sequence():
     lengths = [2, 5]
     dtypes = [float, "float"]
     sequences = [[0.0, 1.0], [0.0, 1.0, 2.0, 3.0, 4.0]]
-    for l, dt, seq in zip(lengths, dtypes, sequences):
-        synt = lc.sequence(l, dt)
+    for len_, dt, seq in zip(lengths, dtypes, sequences):
+        synt = lc.sequence(len_, dt)
         assert synt == seq, f"test_int_sequence failed: object: {synt} != {seq}"
 
 
@@ -107,8 +99,8 @@ def test_bool_sequence():
         [True, False],
         [True, False, True],
     ]
-    for l, dt, seq in zip(lengths, dtypes, sequences):
-        synt = lc.sequence(l, dt)
+    for len_, dt, seq in zip(lengths, dtypes, sequences):
+        synt = lc.sequence(len_, dt)
         assert synt == seq, f"test_bool_sequence failed: object: {synt} != {seq}"
 
 

@@ -1,4 +1,3 @@
-from typing import Any
 import numpy as np
 
 import copy_syntax as lc
@@ -16,11 +15,11 @@ def _syntax_numpy(obj: np.ndarray, quotes: str = "double", seperator_space: bool
 
 
 def _syntax_like_numpy(obj: np.ndarray, quotes: str = "double", seperator_space: bool = True) -> str:
-    if obj.dtype.kind in {'f', 'i', 'u'}:
+    if obj.dtype.kind in {"f", "i", "u"}:
         val = np.arange(start=0, stop=obj.size)
-    elif obj.dtype.kind in {'U', 'S'}:
+    elif obj.dtype.kind in {"U", "S"}:
         val = np.array(lc.sequence(obj.size, type_=str))
-    elif obj.dtype.kind in {'b'}:
+    elif obj.dtype.kind in {"b"}:
         val = np.array(lc.sequence(obj.size, type_=bool))
     else:
         raise TypeError(f'Numpy Arrays with dtype "{obj.dtype}" are not supported.')
