@@ -39,3 +39,5 @@ jobs:
       #     conda list
       - name: Test with tox
         run: tox
+      - name: Create coverage badge
+        run: coverage-badge -o .github/workflows/covbadge.svg
