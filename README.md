@@ -7,8 +7,8 @@
 [![PyPI Status](https://pepy.tech/badge/copy-syntax)](https://pepy.tech/project/copy-syntax)
 [![codecov](https://codecov.io/gh/cemde/copy-syntax/branch/main/graph/badge.svg)](https://codecov.io/gh/cemde/copy-syntax)
 
-[![ReadTheDocs](https://readthedocs.org/projects/copy-syntax/badge/?version=stable)](https://copy-syntax.readthedocs.io/en/stable/)
-[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/cemde/copy-syntax/blob/master/LICENSE)
+[![ReadTheDocs](https://readthedocs.org/projects/copysyntax/badge/?version=stable)](https://copysyntax.readthedocs.io/en/stable/)
+[![license](https://img.shields.io/badge/License-GNU%GPL%3-blue.svg)](https://github.com/cemde/copy-syntax/blob/master/LICENSE)
 
 ## Features
 
