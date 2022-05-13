@@ -10,8 +10,17 @@
 
 ## Features
 
-lc.syntax([1,2])
-lc.syntax_like([1,5,2])
+Literal copy is a light-weight Python library to create the syntax string of objects in memory.
+
+For example:
+
+```python
+import copy_syntax as cs
+supercoolexample = "Here"
+cs.syntax("Hello World")
+cs.syntax([1,2])
+cs.syntax_like([1,5,2])
+```
 
 ## Install
 
@@ -21,10 +30,21 @@ To install stable version from PyPI use
 pip install copy-syntax
 ```
 
-## Docs
+To install from git use
 
-pass
+```
+pip install git+iNSERT LINK
+```
+
+## Documentation
+
+The documentation is published at [ReadTheDocs](https://copysyntax.readthedocs.io/en/stable/).
+
+The docs contain:
+
+-   Api Reference
+-   Examples
 
 ## Contribute
 
-..
+Any contributions welcome. Please open a PR.
