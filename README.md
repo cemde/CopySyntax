@@ -8,7 +8,7 @@
 [![codecov](https://codecov.io/gh/cemde/copy-syntax/branch/main/graph/badge.svg)](https://codecov.io/gh/cemde/copy-syntax)
 
 [![ReadTheDocs](https://readthedocs.org/projects/copysyntax/badge/?version=stable)](https://copysyntax.readthedocs.io/en/stable/)
-[![license](https://img.shields.io/badge/License-GNU%GPL%3-blue.svg)](https://github.com/cemde/copy-syntax/blob/master/LICENSE)
+[![license](https://img.shields.io/badge/License-GNU%2GPL%23-blue.svg)](https://github.com/cemde/copy-syntax/blob/master/LICENSE)
 
 ## Features
 
