@@ -1,5 +1,5 @@
 from .syntax import syntax
-from .literal import Literal
+from .syntax_object import Syntax
 from .syntax_like import syntax_like
 from .sequence import sequence
 
@@ -15,7 +15,7 @@ pytorch_prefix = "torch."
 
 __all__ = [
     syntax,
-    Literal,
+    Syntax,
     syntax_like,
     sequence,
     pandas_prefix,
