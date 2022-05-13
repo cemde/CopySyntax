@@ -26,6 +26,5 @@ jobs:
 
       - name: Create coverage badge
         run: |
-          pip install pytest
-          pytest tests/
-          coverage-badge -o .github/workflows/covbadge.svg
+          make test
+          make coveragebadge

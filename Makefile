@@ -28,7 +28,6 @@ lint:
 	flake8 $(package_name)/ ;\
 	flake8 tests/
 
-
 cov:
 	. $(venv_activate_path) ;\
 	py.test $(cov_args) $(not_slow)
@@ -45,6 +44,14 @@ checkformat:
 	. $(venv_activate_path) ;\
 	black $(package_name)/ --line-length $(linelength) --skip-string-normalization --check ;\
 	black tests/ --line-length $(linelength) --skip-string-normalization --check
+
+test:
+	. $(venv_activate_path) ;\
+	pytest tests/
+
+coveragebadge:
+	. $(venv_activate_path) ;\
+	coverage-badge -o .github/workflows/covbadge.svg
 
 typechecking:
 	. $(venv_activate_path) ;\
