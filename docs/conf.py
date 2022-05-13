@@ -12,12 +12,12 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../literal_copy'))
+sys.path.insert(0, os.path.abspath('../copy_syntax'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'Literal Copy'
+project = 'Copy Syntax'
 copyright = '2022, Cornelius Emde'
 author = 'Cornelius Emde'
 

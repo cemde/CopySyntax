@@ -1,8 +1,8 @@
-literal_copy
+copy_syntax
 ============
 
 .. toctree::
    :maxdepth: 4
 
    
-   literal_copy
+   copy_syntax
