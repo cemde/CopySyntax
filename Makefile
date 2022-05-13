@@ -15,6 +15,7 @@ venv:
 	. $(venv_activate_path) ;\
 	pip install --upgrade pip setuptools wheel ;\
 	pip install --upgrade -r requirements/requirements_dev.txt ;\
+	pip install --upgrade -r requirements/requirements_opt.txt ;\
 	pip install --upgrade -r requirements/requirements.txt
 
 update:
