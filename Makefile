@@ -46,6 +46,11 @@ checkformat:
 	black $(package_name)/ --line-length $(linelength) --skip-string-normalization --check ;\
 	black tests/ --line-length $(linelength) --skip-string-normalization --check
 
+typechecking:
+	. $(venv_activate_path) ;\
+	mypy $(package_name)/ ;\
+	mypy tests/
+
 docs:
 	. $(venv_activate_path) ;\
 	cd docs/ ;\

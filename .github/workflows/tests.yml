@@ -41,5 +41,5 @@ jobs:
         run: tox
       - name: Create coverage badge
         run: |
-          pytest tests/
+          # pytest tests/
           coverage-badge -o .github/workflows/covbadge.svg
