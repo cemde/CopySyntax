@@ -2,6 +2,7 @@ flake8==3.9.2
 tox==3.24.3
 pytest==6.2.5
 pytest-cov==2.12.1
+types-six==1.16.15
 mypy===0.910
 sphinx==4.5.0
 sphinx_rtd_theme==1.0.0
