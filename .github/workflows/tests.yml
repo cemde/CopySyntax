@@ -40,4 +40,4 @@ jobs:
       - name: Test with tox
         run: tox
       - name: Create coverage badge
-        run: coverage-badge -o .github/workflows/covbadge.svg
+        run: pip install coverage-badge && coverage-badge -o .github/workflows/covbadge.svg
