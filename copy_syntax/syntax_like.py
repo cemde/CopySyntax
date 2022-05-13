@@ -2,7 +2,7 @@ from typing import Any, Union
 
 from .utils.iterable import _iterable
 from .utils.generators import letters
-from .literal import Literal
+from .syntax_object import Syntax
 from .sequence import sequence
 from .syntax import syntax
 from .data_types import _syntax_like_numpy
@@ -13,7 +13,7 @@ def syntax_like(
     quotes: str = "double",
     seperator_space: bool = True,
     raw: bool = False,
-) -> Union[str, Literal]:
+) -> Union[str, Syntax]:
     """Creates an object of the same type and structure with preset values.
 
     .. code-block::
@@ -31,7 +31,7 @@ def syntax_like(
     :type raw: bool, optional
     :raises ValueError: if the object is not supported.
     :return: The syntax to generate an object like the base object.
-    :rtype: Union[str, Literal]
+    :rtype: Union[str, Syntax]
     """
     # set correct quotes
     if quotes not in ["single", "double", "'", '"']:
@@ -46,7 +46,7 @@ def syntax_like(
 
         if isinstance(obj, np.ndarray):
             val = _syntax_like_numpy(obj, quotes, seperator_space)
-            return Literal(val, str(type(obj)))
+            return Syntax(val, str(type(obj)))
 
     except ModuleNotFoundError:
         pass
@@ -60,7 +60,7 @@ def syntax_like(
     if raw:
         return val
     else:
-        return Literal(val, type(obj))
+        return Syntax(val, type(obj))
 
 
 def _syntax_like_atomic(obj, quotes: str) -> str:

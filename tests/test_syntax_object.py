@@ -7,7 +7,7 @@ import copy_syntax as lc
 
 SYNTAX = '[4,5,"A",(5,False)]'
 TYPE = "List"
-LITERAL = lc.Literal(SYNTAX, TYPE)
+LITERAL = lc.Syntax(SYNTAX, TYPE)
 
 
 def test___str__(capsys):

@@ -1,7 +1,7 @@
 from typing import Any
 
 from .utils.iterable import _iterable
-from .literal import Literal
+from .syntax_object import Syntax
 from .data_types import _syntax_numpy, _syntax_atomic, _syntax_iterable
 
 
@@ -9,7 +9,7 @@ def syntax(
     obj: Any,
     quotes: str = "double",
     seperator_space: bool = True,
-) -> Literal:
+) -> Syntax:
     """Creates the string containing the syntax to recreate the same object. For example, with `a=["A",5]`
     using `syntax(a)` will generate '["A",5]' as a string to reproduce this variable in a different runtime.
 
@@ -20,8 +20,8 @@ def syntax(
     :param seperator_space: Decides wether a string will be placed between members of an interable.
         For example: `[4,5]` or `[4, 5]`, defaults to True
     :type seperator_space: bool, optional
-    :return: Returns a syntax string, either as `str` or `Literal` object, depending on the `raw` argument.
-    :rtype: Union[str, Literal]
+    :return: Returns a syntax string, either as `str` or `Syntax` object, depending on the `raw` argument.
+    :rtype: Union[str, Syntax]
     """
     # set correct quotes
     if quotes not in ["single", "double", "'", '"']:
@@ -36,7 +36,7 @@ def syntax(
 
         if isinstance(obj, np.ndarray):
             val = _syntax_numpy(obj, quotes, seperator_space)
-            return Literal(val, str(type(obj)))
+            return Syntax(val, str(type(obj)))
 
     except ModuleNotFoundError:
         pass
@@ -46,7 +46,7 @@ def syntax(
     else:
         val = _syntax_atomic(obj, quotes)
 
-    return Literal(val, str(type(obj)))
+    return Syntax(val, str(type(obj)))
 
 
 #######################  # noqa

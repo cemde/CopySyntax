@@ -2,7 +2,7 @@ import os
 import pyperclip
 
 
-class Literal:
+class Syntax:
     def __init__(self, string: str, type: str) -> None:
         """A Literal is a small object that contains the syntax string among others.
 
