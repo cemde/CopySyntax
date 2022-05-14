@@ -31,8 +31,8 @@ jobs:
 
       - name: Commit badge to Repository
         run: |
-          git config --global user.name 'GHA'
-          git config --global user.email 'gha@github.com'
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email '<>'
           git add .github/workflows/covbadge.svg
-          git commit -am "Updated Coverage Badge"
-          git push
+          git commit -m "Updated Coverage Badge"
+          git push origin main
