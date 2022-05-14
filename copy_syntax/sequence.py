@@ -1,4 +1,4 @@
-from typing import Union, Any, List
+from typing import Any, List, Union
 import string
 
 
@@ -22,6 +22,8 @@ def sequence(length: int, type_: Union[type, str]) -> List[Any]:
         return _float_sequence(length)
     elif type_ in ["bool", bool]:
         return _bool_sequence(length)
+    else:
+        raise ValueError(f"'sequence' does not support type '{type_}'")
 
 
 def _letter_pool(i: int) -> List[str]:

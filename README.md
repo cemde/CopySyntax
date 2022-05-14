@@ -4,7 +4,7 @@
 [![PyPI Status](https://badge.fury.io/py/copy-syntax.svg)](https://badge.fury.io/py/copy-syntax)
 [![PyPI Status](https://pepy.tech/badge/copy-syntax)](https://pepy.tech/project/copy-syntax)
 ![Tests](https://github.com/cemde/LiteralCopy/actions/workflows/tests.yml/badge.svg)
-[![codecov](https://codecov.io/gh/cemde/copy-syntax/branch/main/graph/badge.svg)](https://codecov.io/gh/cemde/copy-syntax)
+[![codecov](https://raw.githubusercontent.com/cemde/CopySyntax/main/.github/workflows/covbadge.svg)](https://github.com/cemde/CopySyntax)
 [![ReadTheDocs](https://readthedocs.org/projects/copysyntax/badge/?version=stable)](https://copysyntax.readthedocs.io/en/stable/)
 [![license](https://img.shields.io/badge/License-%20GPLv3-blue.svg)](https://github.com/cemde/CopySyntax/blob/master/LICENSE)
 

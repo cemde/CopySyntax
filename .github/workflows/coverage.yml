@@ -1,0 +1,36 @@
+name: Create Code Coverage Badge
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checking out repo
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: make venv
+
+      - name: Create coverage badge
+        run: |
+          make test
+          make coveragebadge
+
+      - name: Commit badge to Repository
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email '<>'
+          git add .github/workflows/covbadge.svg
+          git commit -m "Updated Coverage Badge"
+          git push origin main

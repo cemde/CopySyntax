@@ -15,6 +15,7 @@ venv:
 	. $(venv_activate_path) ;\
 	pip install --upgrade pip setuptools wheel ;\
 	pip install --upgrade -r requirements/requirements_dev.txt ;\
+	pip install --upgrade -r requirements/requirements_opt.txt ;\
 	pip install --upgrade -r requirements/requirements.txt
 
 update:
@@ -27,7 +28,6 @@ lint:
 	. $(venv_activate_path) ;\
 	flake8 $(package_name)/ ;\
 	flake8 tests/
-
 
 cov:
 	. $(venv_activate_path) ;\
@@ -45,6 +45,19 @@ checkformat:
 	. $(venv_activate_path) ;\
 	black $(package_name)/ --line-length $(linelength) --skip-string-normalization --check ;\
 	black tests/ --line-length $(linelength) --skip-string-normalization --check
+
+test:
+	. $(venv_activate_path) ;\
+	pytest tests/
+
+coveragebadge:
+	. $(venv_activate_path) ;\
+	coverage-badge -o .github/workflows/covbadge.svg
+
+typechecking:
+	. $(venv_activate_path) ;\
+	mypy $(package_name)/ ;\
+	mypy tests/
 
 docs:
 	. $(venv_activate_path) ;\
