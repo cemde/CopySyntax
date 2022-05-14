@@ -28,3 +28,11 @@ jobs:
         run: |
           make test
           make coveragebadge
+
+      - name: Commit badge to Repository
+        run: |
+          git config --global user.name 'GHA'
+          git config --global user.email 'gha@github.com'
+          git add .github/workflows/covbadge.svg
+          git commit -am "Updated Coverage Badge"
+          git push
